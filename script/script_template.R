@@ -217,9 +217,9 @@ new_rows <- anti_join(append_obs, observer_Tbl,
                       by = c("organization", "project", "observer_id", "observer_name"))
 
 # Combine new rows with the existing observer_Tbl
-if (nrow(new_rows) > 0) {
-  sheet_append(obs_url, new_rows)
-}
+#if (nrow(new_rows) > 0) {
+#  sheet_append(obs_url, new_rows)
+#}
 
 ############################
 #### SURVEY TABLE ####
@@ -281,7 +281,7 @@ WTlocation <- c("organization", "location", "latitude", "longitude", "buffer_m",
 location_tbl <- pc_location[!duplicated(pc_location[,WTlocation]), WTlocation] 
 write.csv(location_tbl, file= file.path(out_dir, paste0(dataset_code,"_location.csv")), row.names = FALSE, na = "")
 location_out <- file.path(out_dir, paste0(dataset_code,"_location.csv"))
-drive_upload(media = location_out, path = as_id(dr_dataset_code), name = paste0(dataset_code,"_location.csv"), overwrite = TRUE) 
+#drive_upload(media = location_out, path = as_id(dr_dataset_code), name = paste0(dataset_code,"_location.csv"), overwrite = TRUE) 
 
 #---SURVEY
 noflyover <- data_flat %>%
@@ -296,7 +296,7 @@ WTsurvey <- c("location", "surveyDateTime", "durationMethod", "distanceMethod", 
 
 write.csv(survey_tbl, file= file.path(out_dir, paste0(dataset_code,"_survey.csv")), row.names = FALSE, na = "")
 survey_out <- file.path(out_dir, paste0(dataset_code,"_survey.csv"))
-drive_upload(media = survey_out, path = as_id(dr_dataset_code), name = paste0(dataset_code,"_survey.csv"), overwrite = TRUE) 
+#drive_upload(media = survey_out, path = as_id(dr_dataset_code), name = paste0(dataset_code,"_survey.csv"), overwrite = TRUE) 
 
 #---EXTENDED
 Extended <- c("organization", "project","location", "surveyDateTime", "species", "ind_count", "distanceband", "durationinterval", "site", "station", "utmZone", "easting", 
@@ -308,7 +308,7 @@ Extended <- c("organization", "project","location", "surveyDateTime", "species",
 extended_tbl <- data_flat[!duplicated(data_flat[,Extended]), Extended] 
 write.csv(extended_tbl, file.path(out_dir, paste0(dataset_code, "_behavior.csv")), quote = FALSE, row.names = FALSE, na = "")
 extended_out <- file.path(out_dir, paste0(dataset_code,"_behavior.csv"))
-drive_upload(media = extended_out, path = as_id(dr_dataset_code), name = paste0(dataset_code,"_behavior.csv"), overwrite = TRUE) 
+#drive_upload(media = extended_out, path = as_id(dr_dataset_code), name = paste0(dataset_code,"_behavior.csv"), overwrite = TRUE) 
 
 #---PROCESSING STATS
 #write_lines(paste0("Organization: ", organization), file.path(out_dir, paste0(dataset_code, "_stats.csv")))
